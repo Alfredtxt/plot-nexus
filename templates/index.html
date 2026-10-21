@@ -3,37 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlotNexus - Your Emotional Library</title>
+    <title>PlotNexus - Your Magical Library</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
-        header { text-align: center; padding: 40px 0; }
-        h1 { color: #2c3e50; font-size: 3em; margin-bottom: 10px; }
-        p { color: #7f8c8d; font-size: 1.2em; }
-        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
-        .book-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .book-title { font-size: 1.5em; font-weight: bold; color: #2980b9; margin-bottom: 5px; }
-        .book-author { font-style: italic; color: #7f8c8d; margin-bottom: 15px; }
-        .book-tags { background-color: #e8f4f8; color: #2980b9; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; display: inline-block; }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #0d0d0d;
+            /* Qui diciamo al codice di prendere l'immagine dalla cartella static */
+            background-image: linear-gradient(rgba(13, 13, 13, 0.4), rgba(13, 13, 13, 0.7)), url('/static/library_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e8dcc4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav { 
+            background-color: rgba(13, 13, 13, 0.9); 
+            padding: 15px 30px; 
+            border-bottom: 2px solid #d4af37; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .logo { font-size: 1.8em; font-weight: bold; color: #d4af37; text-decoration: none; letter-spacing: 2px; }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; }
+        .nav-links li { position: relative; margin-left: 20px; }
+        .nav-links a { color: #e8dcc4; text-decoration: none; font-size: 1.1em; padding: 10px; transition: color 0.3s; }
+        .nav-links a:hover { color: #d4af37; }
+        
+        .dropdown-content { 
+            display: none; 
+            position: absolute; 
+            background-color: #0d0d0d; 
+            min-width: 200px; 
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); 
+            z-index: 1; 
+            top: 100%; 
+            left: 0; 
+            border: 1px solid #d4af37; 
+            border-top: none; 
+        }
+        .dropdown-content a { color: #e8dcc4; padding: 12px 16px; text-decoration: none; display: block; }
+        .dropdown-content a:hover { background-color: #1a1a1a; color: #d4af37; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .hero { 
+            max-width: 800px;
+            margin: 100px auto;
+            text-align: center; 
+            padding: 60px 40px; 
+            background: rgba(13, 13, 13, 0.85); 
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        h1 { color: #d4af37; font-size: 3.5em; margin-top: 0; margin-bottom: 20px; text-shadow: 2px 2px 4px #000; }
+        p.subtitle { font-size: 1.4em; font-style: italic; color: #b0a080; line-height: 1.6; margin-bottom: 30px; }
+        
+        .enter-btn {
+            display: inline-block;
+            background-color: #5a1818; 
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px 40px;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .enter-btn:hover { background-color: #7d2020; box-shadow: 0 0 15px #d4af37; transform: translateY(-2px); }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="/" class="logo">📚✨ PlotNexus</a>
+        <ul class="nav-links">
+            <li><a href="/">Entrance Hall</a></li>
+            <li class="dropdown">
+                <a href="#">Library ▾</a>
+                <div class="dropdown-content">
+                    <a href="/biblioteca">The Archives (Catalog)</a>
+                </div>
+            </li>
+            <li><a href="#" style="color: #6a8caf;">Speak with Nexus (Soon)</a></li>
+        </ul>
+    </nav>
 
-    <header>
-        <h1>📚✨ PlotNexus</h1>
-        <p>The interactive book catalog driven by emotional resonance</p>
-    </header>
-
-    <!-- This is where we will inject the books from Python -->
-    <div class="book-grid">
-        {% for book in books %}
-        <div class="book-card">
-            <div class="book-title">{{ book.title }}</div>
-            <div class="book-author">By {{ book.author }}</div>
-            <div class="book-tags">{{ book.emotion_tags }}</div>
-            <p>{{ book.description[:150] }}...</p>
-        </div>
-        {% endfor %}
+    <div class="hero">
+        <h1>Welcome to PlotNexus</h1>
+        <p class="subtitle">Step into an ancient archive where the magic of books intertwines with your emotional resonance.</p>
+        <a href="/biblioteca" class="enter-btn">Explore the Archives</a>
     </div>
-
 </body>
 </html>

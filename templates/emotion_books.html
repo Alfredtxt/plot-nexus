@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ emotion }} Collection - PlotNexus</title>
+    <style>
+        body { font-family: 'Georgia', serif; background-color: #1a1a1a; background-image: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('/static/library_bg.jpg'); background-size: cover; background-attachment: fixed; color: #e8dcc4; margin: 0; padding: 0; }
+        nav { background-color: rgba(13, 13, 13, 0.9); padding: 15px 30px; border-bottom: 2px solid #d4af37; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: bold; color: #d4af37; text-decoration: none; letter-spacing: 2px; }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; }
+        .nav-links li { position: relative; margin-left: 20px; }
+        .nav-links a { color: #e8dcc4; text-decoration: none; font-size: 1.1em; padding: 10px; transition: color 0.3s; }
+        .nav-links a:hover { color: #d4af37; }
+        .dropdown-content { display: none; position: absolute; background-color: #0d0d0d; min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1; top: 100%; left: 0; border: 1px solid #d4af37; border-top: none; }
+        .dropdown-content a { color: #e8dcc4; padding: 12px 16px; text-decoration: none; display: block; }
+        .dropdown-content a:hover { background-color: #1a1a1a; color: #d4af37; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .library-header { text-align: center; padding: 40px 20px 20px 20px; color: #d4af37; }
+        .library-header h1 { font-size: 3em; margin: 0; text-shadow: 2px 2px 4px #000; }
+        
+        .back-btn { display: inline-block; margin-top: 15px; color: #b0a080; text-decoration: none; border: 1px solid #b0a080; padding: 8px 15px; border-radius: 5px; transition: all 0.3s; }
+        .back-btn:hover { color: #d4af37; border-color: #d4af37; }
+
+        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; padding: 40px; }
+        .book-card { background: #f4e8d0; color: #222; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.6); border: 2px solid #c2a77a; transition: transform 0.3s ease; }
+        .book-card:hover { transform: translateY(-5px); border-color: #d4af37; }
+        .book-title { font-size: 1.4em; font-weight: bold; color: #5a1818; margin-bottom: 5px; } 
+        .book-author { font-style: italic; color: #555; margin-bottom: 15px; font-size: 0.95em; }
+        .book-tags { background-color: #1a1a1a; color: #d4af37; padding: 5px 12px; border-radius: 15px; font-size: 0.8em; display: inline-block; border: 1px solid #d4af37; margin-bottom: 10px; }
+        .book-plot { font-size: 0.9em; line-height: 1.5; color: #2e2e2e; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">📚✨ PlotNexus</a>
+        <ul class="nav-links">
+            <li><a href="/">Entrance Hall</a></li>
+            <li class="dropdown">
+                <a href="#">Library ▾</a>
+                <div class="dropdown-content">
+                    <a href="/biblioteca">The Archives (Catalog)</a>
+                </div>
+            </li>
+            <li><a href="/nexus" style="color: #6a8caf;">Speak with Nexus (Soon)</a></li>
+        </ul>
+    </nav>
+
+    <div class="library-header">
+        <h1>The {{ emotion }} Collection</h1>
+        <a href="/biblioteca" class="back-btn">← Back to Archives</a>
+    </div>
+
+    <div class="book-grid">
+        {% for book in books %}
+        <div class="book-card">
+            <div class="book-title">{{ book.title }}</div>
+            <div class="book-author">By {{ book.author }}</div>
+            <div class="book-tags">{{ book.emotion_tags }}</div>
+            <div class="book-plot">{{ book.description[:180] }}...</div>
+        </div>
+        {% else %}
+        <p style="color: #e8dcc4; text-align: center; width: 100%; font-size: 1.2em;">No books found for this emotion yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
