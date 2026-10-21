@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlotNexus - Your Emotional Library</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        header { text-align: center; padding: 40px 0; }
+        h1 { color: #2c3e50; font-size: 3em; margin-bottom: 10px; }
+        p { color: #7f8c8d; font-size: 1.2em; }
+        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
+        .book-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .book-title { font-size: 1.5em; font-weight: bold; color: #2980b9; margin-bottom: 5px; }
+        .book-author { font-style: italic; color: #7f8c8d; margin-bottom: 15px; }
+        .book-tags { background-color: #e8f4f8; color: #2980b9; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📚✨ PlotNexus</h1>
+        <p>The interactive book catalog driven by emotional resonance</p>
+    </header>
+
+    <!-- This is where we will inject the books from Python -->
+    <div class="book-grid">
+        {% for book in books %}
+        <div class="book-card">
+            <div class="book-title">{{ book.title }}</div>
+            <div class="book-author">By {{ book.author }}</div>
+            <div class="book-tags">{{ book.emotion_tags }}</div>
+            <p>{{ book.description[:150] }}...</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
